@@ -1,11 +1,44 @@
 <html>
 <head>
-    <link rel="stylesheet" href="style.css">
         <title> Prima pagina html    </title>
 
 
 
 </head>
+<style>
+    
+  body{
+    background-color: #3c4043;
+    color: white ;
+    font-family: 'Times New Roman', Times, serif;
+  }
+ul{
+  display: flex;
+  list-style-type: none;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+}
+  li{
+    padding: 50px;
+    background-color: #F6F9FE;
+    border-radius: 20px;
+    width: 250px;
+    height: 40px;
+    color: black;
+    text-align: center;
+    transition: 0.5s;
+  }
+
+  li:hover{
+    font-size: 15px;
+    text-align: center;
+    box-shadow: 5px 2.5px 2.5px black;
+  }
+
+
+
+</style>
 
 <body>
  
@@ -30,5 +63,46 @@ Sono Daniele Porcaro e inizio a studiare l'html.
 <br>
 </ul>
 <body>
-    <script src="script.js"></script>
+    <script >
+        var orElement;
+document.addEventListener("mouseover",function(e){
+    console.log(e.target.id);
+    var id = e.target.id;
+    orElement = document.getElementById(id).innerHTML;
+    switch(id) {
+        case "1":
+            document.getElementById("1").innerHTML = "Tim berners Lee";
+            break;
+        case "2":
+            document.getElementById("2").innerHTML = "1990";
+            break;
+        case "3":
+            document.getElementById("3").innerHTML = "gestire i contenuti e creare una struttura di base per poi migliorarla con css e js";
+            break;
+        case "4":
+            document.getElementById("4").innerHTML = "Il Web è uno spazio elettronico e digitale di Internet destinato alla pubblicazione di contenuti multimediali";
+            break;
+        case "5":
+            document.getElementById("5").innerHTML = "per risolvere il problema della condivisione e dell'accesso alle informazioni in modo semplice e globale.";
+            break;
+        case "6":
+            document.getElementById("6").innerHTML = "Il browser è l'applicazione che mostra il sito web al visitatore";
+            break;
+    }
+});
+
+document.addEventListener("mouseout",function(e){
+    var id = e.target.id;
+    document.getElementById(id).innerHTML = orElement;
+});
+
+function Reveal(){
+    const img = document.getElementById("img");
+    img.style.opacity = 1;
+    setTimeout(function() {
+        img.style.opacity = 0;
+
+    }, 5000);
+}
+    </script>
 </html>
