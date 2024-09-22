@@ -73,3 +73,26 @@
   
   img{
   }
+
+  body{
+    background-color: #3c4043;
+    color: white ;
+    font-family: 'Times New Roman', Times, serif;
+  }
+
+  p{
+    padding: 50px;
+    background-color: #F6F9FE;
+    border-radius: 20px;
+    width: 200px;
+    height: 10px;
+    color: black;
+    transition: 0.5s;
+  }
+
+  p:hover{
+    font-size: 20px;
+    box-shadow: 5px 2.5px 2.5px black;
+  }
+
+
