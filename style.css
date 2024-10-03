@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.sidebar{
+    top: 0;
+    width: 25%;
+    padding-bottom:20px ;
+    background-color: #c7def6
+}
+
+.profile-photo{
+    text-align: center;
+    object-fit: cover;
+}
+
+.profile-photo img{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-top: 20px;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    border: #2370D6 5px solid;
+}
+
+.about h1{
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    margin-bottom: 20px;
+    color: #2370d6;
+}
+
+.about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.icon{
+    position: absolute;
+    left: 5px;
+    
+}
+
+p{
+    display: flex;
+    color: rgb(109, 107, 107);
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+
+}
+
+.name{
+    position: relative;
+    bottom: 95vh;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    padding-left: 30%;
+    justify-content: left;
+}
+
+.name h1{
+    font-size: 40px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    padding: 5px;
+}
+
+#first{
+    color: #2370d6;
+}
+
+.about-2{
+    position: relative;
+    bottom: 95vh;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+    padding-left: 30%;
+    justify-content: left;
+}
+
+#interest{
+    font-size: 25px;
+    font-weight: 600;
+    color: #2370d6;
+    font-family: 'Poppins', sans-serif;
+
+    
+}
+
+.quote{
+    border-radius: 10px;
+    width: 80%;
+    margin: 0 auto;
+    background-color: rgb(186, 184, 184);
+    padding: 20px;
+    border-left: solid 10px #2370D6;
+}
+
+.quote p{
+    color: #2370D6;
+    font-size: 15px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.typing-effect p {
+    font-family: monospace;
+    overflow: hidden;
+    border-right: .15em solid #e8bd24;
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .05em;
+    animation: 
+      typing 3.5s steps(30, end),
+      caret .5s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes caret {
+    from, to { border-color: transparent }
+    50% { border-color: #e8bd24 }
+  }
