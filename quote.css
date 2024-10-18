@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 .round{
     background-color: rgb(178, 175, 175);
     padding: 5px;
     border-radius: 5px;
+=======
+.round{
+    background-color: rgb(178, 175, 175);
+    padding: 5px;
+    border-radius: 5px;
+>>>>>>> 6a46d7c00eda4edd15166ca41e9717700ad0c6a3
 }
