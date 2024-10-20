@@ -4,13 +4,13 @@ const progetti = [
         titolo: "CSS e PADDING",
         descrizione: "CSS e PADDING",
         immagine: "link-immagine-1.jpg",
-        link: "/css.html"
+        link: "css.html"
     },
     {
         titolo: "DIV ANNIDATI",
         descrizione: "Creazione di notizie con i DIV ANNIDATI",
         immagine: "link-immagine-2.jpg",
-        link: "/div.html"
+        link: "div.html"
     },
 ];
 
