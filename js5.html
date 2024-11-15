@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <style>
+
+/* CSS */
+.button-9 {
+  appearance: button;
+  backface-visibility: hidden;
+  background-color: #405cf5;
+  border-radius: 6px;
+  border-width: 0;
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
+  font-size: 100%;
+  height: 44px;
+  line-height: 1.15;
+  margin: 12px 0 0;
+  outline: none;
+  overflow: hidden;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transform: translateZ(0);
+  transition: all .2s,box-shadow .08s ease-in;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-9:disabled {
+  cursor: default;
+}
+
+.button-9:focus {
+  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+}
+    </style>
+    <label for="val1">Valore 1</label>
+    <input type="text" id="num1" >
+
+    <label for="val2">Valore 2</label>
+    <input type="text" id="num2">
+    <label for="val1">Valore 3</label>
+    <input type="text" id="num3" >
+
+    <label for="val2">Valore 4</label>
+    <input type="text" id="num4">
+    <label for="val1">Valore 5</label>
+    <input type="text" id="num5" >
+    <button onclick="gestisciCalcolo()" class="button-9" role="button">Aggiungi</button>
+
+    <p id="result">La media è: </p>
+    <p id="nome"></p>
+    
+</body>
+<script>
+    const input = prompt("Inserisci il tuo nome");
+
+    document.getElementById('nome').innerText = `Nome: ${input}`;
+    // Funzione per calcolare la media accettando parametri
+    function calcolaMedia(a, b, c,d,e) {
+        return (a + b + c  + d + e) / 5;
+    }
+
+    // Funzione per gestire gli input e mostrare il risultato
+    function gestisciCalcolo() {
+        // Leggi i valori degli input
+        const num1 = parseFloat(document.getElementById('num1').value);
+        const num2 = parseFloat(document.getElementById('num2').value);
+        const num3 = parseFloat(document.getElementById('num3').value);
+        const num4 = parseFloat(document.getElementById('num4').value);
+        const num5 = parseFloat(document.getElementById('num5').value);
+
+        // Controlla se i valori sono numeri validi
+        if (isNaN(num1) || isNaN(num2) || isNaN(num3) || isNaN(num4) || isNaN(num5)) {
+            document.getElementById('result').innerText = "Per favore, inserisci tutti i numeri.";
+            return;
+        }
+
+        // Calcola la media usando la funzione con parametri
+        const media = calcolaMedia(num1, num2, num3,num4,num5);
+
+        // Mostra il risultato
+        document.getElementById('result').innerText = `La media è: ${media.toFixed(2)}`;
+    }
+</script>
+
+</html>
+
