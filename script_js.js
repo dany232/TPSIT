@@ -23,6 +23,12 @@ const progetti = [
         descrizione: "JS 4",
         immagine: "link-immagine-4.jpg",
         link: "js4.html"
+    },   
+    {
+        titolo: "JS 5",
+        descrizione: "JS 5",
+        immagine: "link-immagine-4.jpg",
+        link: "js5.html"
     }
 ];
 
