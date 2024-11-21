@@ -3,74 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
+    <title>Calcolatore della Media</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Pulsante personalizzato */
+        .button-9 {
+            appearance: button;
+            backface-visibility: hidden;
+            background-color: #405cf5;
+            border-radius: 6px;
+            border-width: 0;
+            box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .1) 0 2px 5px 0, rgba(0, 0, 0, .07) 0 1px 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            font-family: -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Ubuntu, sans-serif;
+            font-size: 100%;
+            height: 44px;
+            line-height: 1.15;
+            margin-top: 20px;
+            outline: none;
+            padding: 0 25px;
+            text-align: center;
+            text-transform: none;
+            transform: translateZ(0);
+            transition: all .2s, box-shadow .08s ease-in;
+            user-select: none;
+        }
 
-/* CSS */
-.button-9 {
-  appearance: button;
-  backface-visibility: hidden;
-  background-color: #405cf5;
-  border-radius: 6px;
-  border-width: 0;
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
-  font-size: 100%;
-  height: 44px;
-  line-height: 1.15;
-  margin: 12px 0 0;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  transform: translateZ(0);
-  transition: all .2s,box-shadow .08s ease-in;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+        .button-9:disabled {
+            cursor: default;
+        }
 
-.button-9:disabled {
-  cursor: default;
-}
+        .button-9:focus {
+            box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
+        }
 
-.button-9:focus {
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
-}
+        .form-container {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .alert-error {
+            color: #ff4d4d;
+            font-weight: bold;
+        }
     </style>
-    <label for="val1">Valore 1</label>
-    <input type="text" id="num1" >
+</head>
+<body class="bg-light">
 
-    <label for="val2">Valore 2</label>
-    <input type="text" id="num2">
-    <label for="val1">Valore 3</label>
-    <input type="text" id="num3" >
+<div class="container mt-5">
+    <div class="form-container">
+        <h2 class="form-title">Calcola la Media dei Valori</h2>
+        
+        <!-- Form di input -->
+        <div class="mb-3">
+            <label for="num1" class="form-label">Valore 1</label>
+            <input type="text" class="form-control" id="num1">
+        </div>
+        <div class="mb-3">
+            <label for="num2" class="form-label">Valore 2</label>
+            <input type="text" class="form-control" id="num2">
+        </div>
+        <div class="mb-3">
+            <label for="num3" class="form-label">Valore 3</label>
+            <input type="text" class="form-control" id="num3">
+        </div>
+        <div class="mb-3">
+            <label for="num4" class="form-label">Valore 4</label>
+            <input type="text" class="form-control" id="num4">
+        </div>
+        <div class="mb-3">
+            <label for="num5" class="form-label">Valore 5</label>
+            <input type="text" class="form-control" id="num5">
+        </div>
+        
+        <!-- Bottone per calcolare -->
+        <button onclick="gestisciCalcolo()" class="button-9 w-100" role="button">Calcola Media</button>
+        
+        <!-- Risultato -->
+        <div class="result-container">
+            <p id="result">La media è: </p>
+            <p id="nome"></p>
+        </div>
+    </div>
+</div>
 
-    <label for="val2">Valore 4</label>
-    <input type="text" id="num4">
-    <label for="val1">Valore 5</label>
-    <input type="text" id="num5" >
-    <button onclick="gestisciCalcolo()" class="button-9" role="button">Aggiungi</button>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <p id="result">La media è: </p>
-    <p id="nome"></p>
-    
-</body>
 <script>
     const input = prompt("Inserisci il tuo nome");
-
     document.getElementById('nome').innerText = `Nome: ${input}`;
+
     // Funzione per calcolare la media accettando parametri
-    function calcolaMedia(a, b, c,d,e) {
-        return (a + b + c  + d + e) / 5;
+    function calcolaMedia(a, b, c, d, e) {
+        return (a + b + c + d + e) / 5;
     }
 
     // Funzione per gestire gli input e mostrare il risultato
@@ -84,17 +126,17 @@
 
         // Controlla se i valori sono numeri validi
         if (isNaN(num1) || isNaN(num2) || isNaN(num3) || isNaN(num4) || isNaN(num5)) {
-            document.getElementById('result').innerText = "Per favore, inserisci tutti i numeri.";
+            document.getElementById('result').innerHTML = "<span class='alert-error'>Per favore, inserisci tutti i numeri.</span>";
             return;
         }
 
         // Calcola la media usando la funzione con parametri
-        const media = calcolaMedia(num1, num2, num3,num4,num5);
+        const media = calcolaMedia(num1, num2, num3, num4, num5);
 
         // Mostra il risultato
         document.getElementById('result').innerText = `La media è: ${media.toFixed(2)}`;
     }
 </script>
 
+</body>
 </html>
-
