@@ -3,77 +3,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
+    <title>Calcolo Dislivello</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
 
-/* CSS */
-.button-9 {
-  appearance: button;
-  backface-visibility: hidden;
-  background-color: #405cf5;
-  border-radius: 6px;
-  border-width: 0;
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset,rgba(50, 50, 93, .1) 0 2px 5px 0,rgba(0, 0, 0, .07) 0 1px 1px 0;
-  box-sizing: border-box;
-  color: #fff;
-  cursor: pointer;
-  font-family: -apple-system,system-ui,"Segoe UI",Roboto,"Helvetica Neue",Ubuntu,sans-serif;
-  font-size: 100%;
-  height: 44px;
-  line-height: 1.15;
-  margin: 12px 0 0;
-  outline: none;
-  overflow: hidden;
-  padding: 0 25px;
-  position: relative;
-  text-align: center;
-  text-transform: none;
-  transform: translateZ(0);
-  transition: all .2s,box-shadow .08s ease-in;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-}
+        .dark-mode {
+            background-color: #121212;
+            color: #ffffff;
+        }
 
-.button-9:disabled {
-  cursor: default;
-}
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
 
-.button-9:focus {
-  box-shadow: rgba(50, 50, 93, .1) 0 0 0 1px inset, rgba(50, 50, 93, .2) 0 6px 15px 0, rgba(0, 0, 0, .1) 0 2px 2px 0, rgba(50, 151, 211, .3) 0 0 0 4px;
-}
+        .toggle-switch label {
+            margin-left: 10px;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #f8f9fa;
+        }
+
+        .dark-mode .result-box {
+            background-color: #1e1e1e;
+        }
+
+        canvas {
+            margin-top: 30px;
+        }
+
+        .btn {
+          position: relative;
+          background-image: url('assets/monviso.jpg'); 
+          background-size: cover;  
+          background-position: center;  
+          border: none;  
+          color: rgb(255, 255, 255); 
+          font-size: 16px;  
+          padding: 15px 25px; 
+          border-radius: 8px;  
+          text-align: center;  
+          cursor: pointer;
+          transition: background-color 0.3s ease;   
+          
+      }
+
+      .btn::before{
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        content: "";
+        border-radius: 8px;
+        right: 0;
+        background: rgba(0, 0, 0, 0.4); 
+        z-index: 1;
+      }
+      .btn span{
+        position: relative;
+        z-index: 2;
+      }
+      .btn:hover {
+          background-color: rgba(0, 0, 0, 0.4); 
+      }
+
     </style>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores soluta eius natus quia ratione corporis nam iste non. Error.</p>
-    <label for="val1">Valore 1</label>
-    <input type="text" id="val1" >
+</head>
+<body class="">
 
-    <label for="val2">Valore 2</label>
-    <input type="text" id="val2">
-    <button onclick="sum()" class="button-9" role="button">Aggiungi</button>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1 class="text-center mb-4">Calcolo Dislivello Totale</h1>
 
-    <p id="somma">La somma dei 2 valori è :</p>
-    <p id="nome"></p>
-    
-</body>
+            <!-- Input Altitudini -->
+            <div class="mb-4">
+                <label for="val1" class="form-label">Punto di partenza (m):</label>
+                <input type="number" id="val1" class="form-control" placeholder="Altitudine iniziale">
+            </div>
+            <div class="mb-4">
+                <label for="val2" class="form-label">Punto di pausa (m):</label>
+                <input type="number" id="val2" class="form-control" placeholder="Altitudine pausa">
+            </div>
+            <div class="mb-4">
+                <label for="val3" class="form-label">Punto di arrivo (m):</label>
+                <input type="number" id="val3" class="form-control" placeholder="Altitudine finale">
+            </div>
+
+            <div class="mb-4">
+              <label for="distance" class="form-label">Distanza totale (km):</label>
+              <input type="number" id="distance" class="form-control" placeholder="Distanza in km">
+          </div>
+          <div class="mb-4">
+              <label for="speed" class="form-label">Velocità media (km/h):</label>
+              <input type="number" id="speed" class="form-control" placeholder="Velocità in km/h">
+          </div>
+          <div class="mb-4">
+            <label for="val1" class="form-label">Luogo:</label>
+            <input type="text" id="city" class="form-control" placeholder="Luogo">
+        </div>
+
+            <!-- Pulsante Calcolo -->
+            <button onclick="calcolaDislivello()" class="btn  w-100"><span>Calcola Dislivello Totale</span></button>
+
+            <!-- Risultato -->
+            <div id="resultBox" class="result-box mt-4 text-center" style="display: none;">
+                <h4>Risultato</h4>
+                <p id="dislivelloResult"></p>
+            </div>
+
+            <!-- Grafico -->
+            <canvas id="altitudeChart" style="display: none;"></canvas>
+
+            <!-- Giorno/Notte -->
+            <div class="toggle-switch mt-4 text-center">
+                <input type="checkbox" id="toggleMode" class="form-check-input" onchange="toggleDarkMode()">
+                <label for="toggleMode" class="form-check-label">Modalità Notte</label>
+            </div>
+            
+        </div>
+    </div>
+    <div id="weather" class="mt-4 text-center" style="display: none;">
+      <h4>Previsioni Meteo:</h4>
+      <p id="weatherInfo"></p>
+  </div>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
-    const nome = prompt("Inserisci il tuo nome");
-    const va1 = document.getElementById("val1");
-    const va2 = document.getElementById("val2");
-    var  nomeElement = document.getElementById("nome");
+    // Calcolo del dislivello
+    function calcolaDislivello() {
+        const val1 = parseFloat(document.getElementById("val1").value);
+        const val2 = parseFloat(document.getElementById("val2").value);
+        const val3 = parseFloat(document.getElementById("val3").value);
+        const distance = parseFloat(document.getElementById("distance").value);
+        const speed = parseFloat(document.getElementById("speed").value);
+        if (isNaN(val1) || isNaN(val2) || isNaN(val3)) {
+            alert("Per favore, inserisci tutti i valori!");
+            return;
+        }
 
-    nomeElement.innerHTML = "Nome : " + nome;
+        const dislivello1 = val2 - val1; // Dal punto di partenza alla pausa
+        const dislivello2 = val3 - val2; // Dalla pausa all'arrivo
 
-    function sum() {
-        var num1 = parseFloat(va1.value);
-        var num2 = parseFloat(va2.value);
-        var sum = num1 + num2;
-        document.getElementById("somma").innerHTML = "La somma dei 2 valori è : " + sum;
+        const dislivelloTotalePositivo = Math.max(0, dislivello1) + Math.max(0, dislivello2);
+        const dislivelloTotaleNegativo = Math.abs(Math.min(0, dislivello1)) + Math.abs(Math.min(0, dislivello2));
+        const dislivelloComplessivo = dislivelloTotalePositivo + dislivelloTotaleNegativo;
+        const tempo = distance / speed;
+
+        // Aggiorna il risultato
+        document.getElementById("dislivelloResult").innerHTML = `
+            Dislivello Positivo: <strong>${dislivelloTotalePositivo} m</strong><br>
+            Dislivello Negativo: <strong>${dislivelloTotaleNegativo} m</strong><br>
+            Dislivello Complessivo: <strong>${dislivelloComplessivo} m</strong><br>
+            Tempo Stimato: <strong>${tempo.toFixed(2)} ore</strong><br>
+            <button onclick="downloadPDF(${dislivelloTotalePositivo},${dislivelloTotaleNegativo},${dislivelloComplessivo},${tempo.toFixed(2)})" class="btn btn-danger w-100 mt-4">Scarica Dati in PDF</button>
+
+        `;
+
+        // Mostra il risultato
+        document.getElementById("resultBox").style.display = "block";
+
+        // Mostra il grafico
+        generaGrafico([val1, val2, val3]);
+
+        mostraMeteo();
+        
+        if (isNaN(distance) || isNaN(speed)) {
+            alert("Per favore, inserisci tutti i valori corretti!");
+            return;
+        }
+
     }
-    
 
+
+    // Genera grafico con Chart.js
+    function generaGrafico(data) {
+        const ctx = document.getElementById('altitudeChart').getContext('2d');
+        document.getElementById("altitudeChart").style.display = "block";
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Partenza', 'Pausa', 'Arrivo'],
+                datasets: [{
+                    label: 'Altitudine (m)',
+                    data: data,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    }
+
+    function mostraMeteo() {
+       const city = document.getElementById("city").value;
+
+            const apiKey = "463e86ef7375a1dc9d41a1f8daabff00"; 
+            const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=it`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const temperature = data.main.temp;
+                    const description = data.weather[0].description;
+                    const humidity = data.main.humidity;
+                    const windSpeed = data.wind.speed;
+
+                    const weatherInfo = `
+                        Temperatura: ${temperature}°C<br>
+                        Condizioni: ${description}<br>
+                        Umidità: ${humidity}%<br>
+                        Vento: ${windSpeed} m/s
+                    `;
+
+                    document.getElementById("weatherInfo").innerHTML = weatherInfo;
+                    document.getElementById("weather").style.display = "block";
+                })
+                .catch(error => console.log('Errore nella richiesta meteo:', error));
+        }
+
+    function downloadPDF(dislivelloPositivo,dislivelloNegativo,dislivelloComplessivo,tempoStimato) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+
+      // Previsioni meteo
+      const weather = document.getElementById("weatherInfo").innerText;
+
+      // Aggiungi il titolo del documento PDF
+      doc.setFontSize(16);
+      doc.text("Rapporto Dislivello e Meteo", 20, 20);
+      
+      // Imposta la dimensione del font per il corpo del documento
+      doc.setFontSize(12);
+
+      // Aggiungi le informazioni sul dislivello
+      doc.text(`Dislivello Positivo: ${dislivelloPositivo} m`, 20, 30);
+      doc.text(`Dislivello Negativo: ${dislivelloNegativo} m`, 20, 40);
+      doc.text(`Dislivello Complessivo: ${dislivelloComplessivo} m`, 20, 50);
+      doc.text(`Tempo Stimato: ${tempoStimato} ore`, 20, 60);
+
+      // Aggiungi le previsioni meteo
+      doc.text("Previsioni Meteo:", 20, 70);
+      doc.text(weather, 20, 80);
+
+      // Salva il file PDF
+      doc.save("report_dislivello_meteo.pdf");
+  }
+
+        
+
+    // Modalità Giorno/Notte
+    function toggleDarkMode() {
+        document.body.classList.toggle("dark-mode");
+    }
 </script>
-</html>
 
+</body>
+</html>
