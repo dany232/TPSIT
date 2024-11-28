@@ -23,16 +23,19 @@
     <button onclick="handleTesto('testo5')" id="btn" class="btn btn-danger">Nascondi Testo</button> 
    
   <script>
-  function handleTesto(id) 
-  {
+  function handleTesto(id) {
   const testo = document.getElementById(id);
   const btn = document.getElementById("btn");
+
   if (testo.style.display === "none") {
     testo.style.display = "block";
+    btn.innerText = "Nascondi Testo";  
   } else {
     testo.style.display = "none";
+    btn.innerText = "Mostra Testo";  
   }
-} 
+}
+
     </script>
     
     
