@@ -155,15 +155,14 @@
             return;
         }
 
-        const dislivello1 = val2 - val1; // Dal punto di partenza alla pausa
-        const dislivello2 = val3 - val2; // Dalla pausa all'arrivo
+        const dislivello1 = val2 - val1; 
+        const dislivello2 = val3 - val2; 
 
         const dislivelloTotalePositivo = Math.max(0, dislivello1) + Math.max(0, dislivello2);
         const dislivelloTotaleNegativo = Math.abs(Math.min(0, dislivello1)) + Math.abs(Math.min(0, dislivello2));
         const dislivelloComplessivo = dislivelloTotalePositivo + dislivelloTotaleNegativo;
         const tempo = distance / speed;
 
-        // Aggiorna il risultato
         document.getElementById("dislivelloResult").innerHTML = `
             Dislivello Positivo: <strong>${dislivelloTotalePositivo} m</strong><br>
             Dislivello Negativo: <strong>${dislivelloTotaleNegativo} m</strong><br>
@@ -176,7 +175,6 @@
         // Mostra il risultato
         document.getElementById("resultBox").style.display = "block";
 
-        // Mostra il grafico
         generaGrafico([val1, val2, val3]);
 
         mostraMeteo();
@@ -189,7 +187,6 @@
     }
 
 
-    // Genera grafico con Chart.js
     function generaGrafico(data) {
         const ctx = document.getElementById('altitudeChart').getContext('2d');
         document.getElementById("altitudeChart").style.display = "block";
