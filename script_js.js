@@ -10,7 +10,7 @@ const progetti = [
         titolo: "JS 2",
         descrizione: "JS 2",
         immagine: "link-immagine-2.jpg",
-        link: "/js2.html"
+        link: "js2.html"
     },
     {
         titolo: "JS 3",
