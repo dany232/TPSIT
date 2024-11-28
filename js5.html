@@ -124,7 +124,6 @@
         const num4 = parseFloat(document.getElementById('num4').value);
         const num5 = parseFloat(document.getElementById('num5').value);
 
-        // Controlla se i valori sono numeri validi
         if (isNaN(num1) || isNaN(num2) || isNaN(num3) || isNaN(num4) || isNaN(num5)) {
             document.getElementById('result').innerHTML = "<span class='alert-error'>Per favore, inserisci tutti i numeri.</span>";
             return;
