@@ -29,6 +29,12 @@ const progetti = [
         descrizione: "JS 5",
         immagine: "link-immagine-4.jpg",
         link: "js5.html"
+    },
+    {
+        titolo: "JS 5 ",
+        descrizione: "JS 5 Set Interval",
+        immagine: "link-immagine-4.jpg",
+        link: "js5_2.html"
     }
 ];
 
