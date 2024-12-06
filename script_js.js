@@ -41,6 +41,12 @@ const progetti = [
         descrizione: "Gioco della morra cinese ",
         immagine : "",
         link: "morra_bot.html"
+    },
+    {
+        titolo: "Algoritmo Numeri Primi",
+        descrizione: "Array 1",
+        immagine : "",
+        link:"array.html"
     }
 ];
 
