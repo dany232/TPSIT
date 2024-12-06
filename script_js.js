@@ -35,6 +35,12 @@ const progetti = [
         descrizione: "JS 5 Set Interval",
         immagine: "link-immagine-4.jpg",
         link: "js5_2.html"
+    },
+    {
+        titolo: "Morra BOT",
+        descrizione: "Gioco della morra cinese ",
+        immagine : "",
+        link: "morra_bot.html"
     }
 ];
 
