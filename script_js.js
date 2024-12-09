@@ -46,7 +46,7 @@ const progetti = [
         titolo: "Algoritmo Numeri Primi",
         descrizione: "Array 1",
         immagine : "",
-        link:"array.html"
+        link:"array1.html"
     }
 ];
 
