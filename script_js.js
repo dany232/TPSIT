@@ -47,6 +47,12 @@ const progetti = [
         descrizione: "Array 1",
         immagine : "",
         link:"array1.html"
+    },
+    {
+        titolo: "Matrice Responsiva 10x10",
+        descrizione : "Array 2",
+        immagine: "",
+        link: "array2.html"
     }
 ];
 
