@@ -53,6 +53,12 @@ const progetti = [
         descrizione : "Array 2",
         immagine: "",
         link: "array2.html"
+    },
+    {
+        titolo: "Matrice Numeri primi  50x50",
+        descrizione : "Array 3",
+        immagine: "",
+        link: "array3.html"
     }
 ];
 
