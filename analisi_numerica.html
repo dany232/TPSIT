@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<style>
+            body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f8f9fa;
+        }
+            p.lead {
+            color: #6c757d;
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        h1 {
+            color: #007bff;
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        .box{
+            margin-bottom: 500px;
+        }
+</style>
+<body class="bg-body-secondary">
+    <div class="container">
+        <div class="box d-flex flex-wrap  justify-content-center bg-white rounded ">
+            <div class="box-2 m-4  p-3  rounded d-flex  align-items-center flex-column ">
+                <h1 class="text-center">Analisi Numerica</h1>
+                <p class="lead">Clicca sul pulsante per analizzare un numero</p>
+                <button class="btn-primary btn btn-lg " onclick="analisiNumerica()">Analizza</button>
+
+                <div class="mt-4">
+                    <p id="out2" class="alert alert-info"></p>
+                </div>
+
+        </div>
+
+       <div class="mt-5 table-responsive">
+        <table id="myTable" class="table table-bordered">
+            <thead>
+                <tr class="table-primary">
+                    <th>Numero</th>
+                    <th>Parità</th>
+                    <th>Primo</th>
+                    <th>Doppio</th>
+                    <th>Metà Intera</th>
+                    <th>Complemento</th>
+                    <th>Somma al precedente e successivo</th>
+                    <th>Moltiplicato per 3.14</th>
+                    <th>Moltiplicato per 2.71</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</html>
+
+<script>
+    const out2 = document.getElementById("out2");
+
+    function isEven(numero){
+        return numero % 2 == 0;
+    }
+    function isPrime(num) {
+  if (num <= 1) return true;
+  for (let i = 2; i <= Math.sqrt(num); i++) {
+    if (num % i === 0) return false;
+  }
+  return true;
+}
+    function analisiNumerica(){
+        let numero = parseFloat(prompt("Inserisci il numero da analizzare"));
+        out2.innerHTML = `
+        <p style="color:#007bff;">Numero inserito: <strong>${numero}</strong></p>
+        <p style="color:#007bff;">Parità: <strong>${isEven(numero)? "Pari" : "Dispari"}</strong></p>
+        <p style="color:#007bff;">Primo: <strong>${isPrime(numero) ? "Si" : "No"}</strong></p>
+        <p style="color:#007bff;">Doppio:<strong> ${numero*2}</strong></p>
+        <p style="color:#007bff;">Metà Intera: <strong>${Math.floor(numero / 2)}</strong></p>
+        <p style="color:#007bff;">Complemento: <strong>${1000 - numero}</strong></p>
+        <p style="color:#007bff;">Somma al numero precedente e successivo: <strong>${numero + numero + 1 + numero - 1}</strong></p>            
+        <p style="color:#007bff;">Moltiplicato per 3.14: <strong>${(3.14 * numero).toFixed(2)}</strong></p>
+        <p style="color:#007bff;">Moltiplicato per 2.71: <strong>${(2.71 * numero).toFixed(2)}</strong></p>
+        `;
+
+    }
+    let table = document.getElementById("myTable").getElementsByTagName("tbody")[0];
+
+    for(let i = 1; i <= 10000; i++){
+        table.innerHTML += `
+        <tr>
+                    <td style="${isPrime(i) ? "color:red;" : ""}"><strong>${i}</strong></td>
+                    <td><strong>${isEven(i)? "Pari" : "Dispari"}</strong></td>
+                    <td><strong>${isPrime(i) ? "Primo" : "-"}</strong></td>
+                    <td><strong> ${i*2}</strong></td>
+                    <td><strong>${Math.floor(i / 2)}</strong></td>
+                    <td><strong>${1000 - i}</strong></td>
+                    <td><strong>${i + i + 1 + i - 1}</strong></td>
+                    <td><strong>${(3.14 * i).toFixed(2)}</strong></td>
+                    <td>${(2.71 * i).toFixed(2)}</td>
+                </tr>
+
+        `
+
+    }
+
+</script>
