@@ -59,6 +59,12 @@ const progetti = [
         descrizione : "Array 3",
         immagine: "",
         link: "array3.html"
+    },
+    {
+        titolo: "Analisi Numerica",
+        descrizione: "analisi Numerica",
+        immagine: "",
+        link: "analisi_numerica.html"
     }
 ];
 
