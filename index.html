@@ -60,21 +60,21 @@
       <div class="row d-flex justify-content-center align-items-center card-body">
         <div class="col-12 col-lg-4 mt-4 mt-lg-0">
           <div class="card" style="">
-            <img src="1.svg" class="card-img-top" alt="..." width="500px">
+            <img src="2.svg" class="card-img-top" alt="..." width="500px">
             <div class="card-body">
-              <h5 class="card-title">JS 5</h5>
-              <p class="card-text">Esercizio JS 5</p>
-              <a href="#" class="btn btn-primary" id="openModal">Go somewhere</a>
+              <h5 class="card-title">JavaScript</h5>
+              <p class="card-text">Premi il pulsante qui sotto per visualizzare tutti i miei esercizi di JavaScript</p>
+              <a href="#" class="btn btn-primary" id="openModal">Vai</a>
             </div>
           </div>
         </div>
         <div class="col-12 col-lg-4 mt-4 mt-lg-0">
           <div class="card" style="">
-            <img src="2.svg" class="card-img-top" alt="..." style="width: 402px; height: 235px;">
+            <img src="1.svg" class="card-img-top" alt="..." style="width: 402px; height: 235px;">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">HTML-CSS</h5>
+              <p class="card-text">Premi il pulsante qui sotto per visualizzare tutti i miei esercizi HTML-CSS</p>
+              <a href="#" class="btn btn-primary">Vai</a>
             </div>
           </div>
         </div>
@@ -82,13 +82,30 @@
           <div class="card" style="">
             <img src="3.svg" class="card-img-top" alt="..." >
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
+              <h5 class="card-title">La sicurezza Online</h5>
+              <p class="card-text">Un esercizio bootstrap  sulla sicurezza online</p>
+              <a href="#" class="btn btn-primary">Visualizza</a>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="myModalLabel">La sicurezza Online</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Il contenuto verrà caricato qui -->
+            <div id="modalContent">Caricamento...</div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+          </div>
+        </div>
+    </div>
     </div>
     
 </body>
@@ -100,7 +117,7 @@
     let modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.show();
 
-    $("#modalContent").load("js5.html", function (response, status, xhr) {
+    $("#modalContent").load("bootstrap_2.html", function (response, status, xhr) {
       if (status === "error") {
         $("#modalContent").html("Errore nel caricamento del contenuto.");
       }
