@@ -24,9 +24,16 @@
         background-color: #f1f1f1;
     }
     .active {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        background-color: #e01212;
-    }
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            animation: glow 1s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                box-shadow: 0 0 10px #e01212, 0 0 20px #e01212, 0 0 30px #e01212, 0 0 40px #e01212;
+            }
+            to {
+                box-shadow: 0 0 20px #e01212, 0 0 30px #e01212, 0 0 40px #e01212, 0 0 50px #e01212;
+            }
     .btn {
         border-radius: 20px;
     }
@@ -35,6 +42,15 @@
         font-family: 'Arial', sans-serif;
         color: #333;
     }
+    #box-1 { background-color: #ff9999; }
+    #box-2 { background-color: #99ccff; }
+    #box-3 { background-color: #99ff99; }
+    #box-4 { background-color: #ffcc99; }
+    #box-5 { background-color: #cc99ff; }
+    #box-6 { background-color: #ffff99; }
+    #box-7 { background-color: #ff99cc; }
+    #box-8 { background-color: #99ffcc; }
+    #box-9 { background-color: #ccccff; }
 </style>
 <body>
     <div class="container d-flex justify-content-center align-items-center min-vh-100 flex-column">
