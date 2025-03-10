@@ -33,11 +33,13 @@ function checkSequence(){
     for(let i = 0; i < index; i++){
         if(tempSequence[i] !== userSequence[i]){
             alert('You lose');
+            location.reload();
             return;
         }
     }
     if(index === 9){
         alert('You win the game');
+        win();
         return;
     }
     alert('You win this round');
@@ -65,3 +67,59 @@ document.querySelectorAll('.box').forEach(box => {
     });
 });
 
+
+function win(){
+    tsParticles.load("tsparticles", {
+     particles: {
+         number: {
+             value: 100
+         },
+         color: {
+             value: ["#FFD700", "#FF4500", "#00FFFF"]
+         },
+         shape: {
+             type: "circle"
+         },
+         opacity: {
+             value: 0.8
+         },
+         size: {
+             value: 4,
+             random: true
+         },
+         move: {
+             enable: true,
+             speed: 2,
+             direction: "bottom",
+             random: false,
+             straight: false
+         }
+     },
+     interactivity: {
+         events: {
+             onClick: { enable: true, mode: "push" },
+             onHover: { enable: true, mode: "repulse" }
+         }
+     },
+     background: {
+         color: "black"
+     }
+  });
+  
+  // GSAP animation for "YOU WON!"
+  gsap.to("#you-won", {
+     opacity: 1,
+     scale: 1,
+     duration: 1.5,
+     ease: "bounce.out",
+     onComplete: () => {
+         gsap.to("#you-won", {
+             scale: 1.2,
+             yoyo: true,
+             repeat: -1,
+             duration: 0.8,
+             ease: "sine.inOut"
+         });
+     }
+  });
+    }
