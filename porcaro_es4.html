@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .box-2 {
+            border-radius: 10px;
+            height: 100px;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100 flex-column">
+        <h2>Esercizio 4</h2>
+        <p id="points">Points:  </p>
+        <dIiv class="row p-2">
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-1" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-2" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-3" onclick="checkSequence(this)"></div>
+            </div>
+        </dIiv>
+        <div class="row p-2">
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-4" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-5" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-6" onclick="checkSequence(this)"></div>
+            </div>
+        </div>
+        <div class="row p-2">
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-7" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-8" onclick="checkSequence(this)"></div>
+            </div>
+            <div class="col-6 col-md-4 p-1">
+                <div class="box-2" id="box-9" onclick="checkSequence(this)"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 col-md-6 p-3 p-md-0">
+                <button class="btn btn-primary w-100" id="start" onclick="startGame()">Inizia</button>
+            </div>
+            <div class="col-6 col-md-6 p-3 p-md-0">
+                <button class="btn btn-danger w-100" onclick="location.reload()">Resetta</button>
+            </div>
+        </div>
+    </div>
+    
+
+    
+</body>
+
+<script src="js/bootstrap.bundle.js"></script>
+<script src="js/script.js"></script>
+</html>
