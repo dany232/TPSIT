@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parametri GET</title>
+</head>
+<body>
+    <h1>Valori GET</h1>
+    <p id="output"></p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const name = params.get("name");
+        const email = params.get("email");
+        const message = params.get("message");
+
+        function reverseString(str) {
+            return str.split('').reverse().join('');
+}
+        function joinStrings(str1,str2) {
+            return str1 + str2;
+        }
+        function stringsLength(str1,str2) {
+            return str1.length + str2.length;
+        }
+
+        document.getElementById("output").innerText = `
+        Lunghezza nome: ${name.length}
+        Lunghezza email: ${email.length}
+        Lunghezza messaggio: ${message.length}
+        Messaggio al contrario: ${reverseString(message)}
+        Nome e messaggio: ${joinStrings(name, message)}
+        Lunghezza: ${(stringsLength(name, message) > 20) ? "Il messaggio è troppo lungo" : "Il messaggio è di lunghezza accettabile"}
+        `;
+    </script>
+</body>
+</html>
