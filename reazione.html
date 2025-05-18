@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gioco di reazione</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="bg-light">
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        min-height: 100vh;
+        padding: 20px;
+    }
+    
+    .container {
+        background-color: white;
+        border-radius: 15px;
+        padding: 30px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        max-width: 900px;
+    }
+    
+    .game-header {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+    
+    .card {
+        cursor: pointer;
+        min-height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 12px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        transition: all 0.3s ease;
+        border: none;
+    }
+    
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .card-title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    
+    .score-container {
+        text-align: center;
+        margin: 20px 0;
+        font-size: 1.2rem;
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 10px;
+    }
+    
+    .score {
+        font-weight: bold;
+        color: #3498db;
+        font-size: 1.5rem;
+    }
+    
+    @keyframes correct {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+    }
+    
+    @keyframes wrong {
+        0%, 100% { transform: translateX(0); }
+        20%, 60% { transform: translateX(-5px); }
+        40%, 80% { transform: translateX(5px); }
+    }
+    
+    .correct {
+        animation: correct 0.6s;
+    }
+    
+    .wrong {
+        animation: wrong 0.5s;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="game-header">
+        <h1>Trova i Numeri Primi</h1>
+        <p class="text-muted">Clicca sui numeri primi il più velocemente possibile. Un numero primo è divisibile solo per 1 e per se stesso.</p>
+    </div>
+    
+    <div class="score-container">
+        <p>Punteggio: <span class="score" id="score">0</span></p>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-0"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-1"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-2"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-3"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-4"></h5>
+            </div>
+        </div>
+    </div>
+    <div class="row justify-content-center mt-2">
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-5"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-6"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-7"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-8"></h5>
+            </div>
+        </div>
+        <div class="col-md-2 card text-center p-3 m-1">
+            <div class="card-body">
+                <h5 class="card-title number" id="card-9"></h5>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+</body>
+</html>
+
+
+
+<script>
+    let primeNumbers = [];
+    let nonPrimeNumbers = [];
+    let score = 0;
+    
+    function isPrime(num) {
+        if (num <= 1) return false; // 1 and numbers less than 1 are not prime
+        for (let i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i === 0) return false;
+        }
+        return true;
+    }
+    
+    function shuffle(array) {
+        let currentIndex = array.length;
+
+        // While there remain elements to shuffle...
+        while (currentIndex != 0) {
+
+            // Pick a remaining element...
+            let randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
+
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+    }
+    
+    for (let i = 1; i <= 100; i++) {
+        if (isPrime(i)) {
+            primeNumbers.push(i);
+        } else {
+            nonPrimeNumbers.push(i);
+        }
+    }
+    
+    function updateScore(increment) {
+        score += increment;
+        document.getElementById('score').innerText = score;
+    }
+    
+    setInterval(() => {
+        let randomPrimeIndex = Math.floor(Math.random() * primeNumbers.length);
+        let randomPrime = primeNumbers[randomPrimeIndex];
+
+        shuffle(nonPrimeNumbers);
+        let randomNonPrimeArray = nonPrimeNumbers.slice(0, 9);
+        let numbers = [randomPrime,...randomNonPrimeArray];
+        
+        shuffle(numbers); 
+
+        numbers.forEach((number, index) => {
+            let card = document.getElementById(`card-${index}`);
+            if (card) { 
+                card.innerText = number;
+                card.style.backgroundColor = 'white';
+                card.style.color = 'black';
+            }
+        });
+    }, 1500);
+
+    document.querySelectorAll('.number').forEach((element) => {
+        element.addEventListener('click', (event) => {
+            let clickedNumber = parseInt(event.target.innerText);
+            if (isPrime(clickedNumber)) {
+                event.target.style.backgroundColor = '#2ecc71';
+                event.target.style.color = 'white';
+                event.target.innerText = 'Corretto!';
+                event.target.classList.add('correct');
+                updateScore(1);
+            } else {
+                event.target.style.backgroundColor = '#e74c3c';
+                event.target.style.color = 'white';
+                event.target.innerText = 'Sbagliato!';
+                event.target.classList.add('wrong');
+                updateScore(-1);
+            }
+            
+            setTimeout(() => {
+                event.target.classList.remove('correct');
+                event.target.classList.remove('wrong');
+            }, 600);
+        });
+    });
+
+</script>
